@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GoCoCMS.Data.Repository
+namespace GoCoCMS.Data.Repositories
 {
     public interface IRepository<TEntity> where TEntity : BaseEntity
     {

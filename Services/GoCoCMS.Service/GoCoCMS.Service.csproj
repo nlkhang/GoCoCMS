@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\GoCoCMS.Data\GoCoCMS.Data.csproj" />
+  </ItemGroup>
+
 </Project>
