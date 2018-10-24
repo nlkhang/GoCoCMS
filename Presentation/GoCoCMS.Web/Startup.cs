@@ -1,4 +1,7 @@
 ﻿using GoCoCMS.Data;
+using GoCoCMS.Data.Repositories;
+using GoCoCMS.Service;
+using GoCoCMS.Web.Areas.Admin.Factories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,11 +33,14 @@ namespace GoCoCMS.Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            var connectionString = Configuration.GetConnectionString("SqlConnection");
-
+            // dependency injection
             services.AddDbContext<GoCoCmsContext>(
-                options => options.UseSqlServer(connectionString)
+                options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"))
             );
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped<IDbContext, GoCoCmsContext>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICategoryModelFactory, CategoryModelFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

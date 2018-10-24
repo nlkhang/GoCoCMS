@@ -25,6 +25,24 @@ namespace GoCoCMS.Service
 
         #region Methods
 
+        public IList<Category> GetAllCategories(string categoryName)
+        {
+            var query = _categoryRepository.Table;
+
+            if (!string.IsNullOrWhiteSpace(categoryName))
+                query = query.Where(c => c.Name.Contains(categoryName));
+
+            query = query.Where(c => !c.Deleted);
+            query = query.OrderBy(c => c.ParentCategoryId).ThenBy(c => c.DisplayOrder).ThenBy(c => c.Id);
+
+            var unsortedCategories = query.ToList();
+
+            //sort categories
+            var sortedCategories = this.SortCategoriesForTree(unsortedCategories);
+            return sortedCategories;
+
+        }
+
         public Category GetCategoryById(int categoryId)
         {
             if (categoryId == 0)
@@ -136,6 +154,31 @@ namespace GoCoCMS.Service
             }
 
             result.Reverse();
+            return result;
+        }
+
+        public virtual IList<Category> SortCategoriesForTree(IList<Category> source, int parentId = 0,
+            bool ignoreCategoriesWithoutExistingParent = false)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+
+            var result = new List<Category>();
+
+            foreach (var cat in source.Where(c => c.ParentCategoryId == parentId).ToList())
+            {
+                result.Add(cat);
+                result.AddRange(SortCategoriesForTree(source, cat.Id, true));
+            }
+
+            if (ignoreCategoriesWithoutExistingParent || result.Count == source.Count)
+                return result;
+
+            //find categories without parent in provided category source and insert them into result
+            foreach (var cat in source)
+                if (result.FirstOrDefault(x => x.Id == cat.Id) == null)
+                    result.Add(cat);
+
             return result;
         }
 

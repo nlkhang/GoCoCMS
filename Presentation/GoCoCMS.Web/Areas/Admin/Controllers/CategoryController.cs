@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using GoCoCMS.Web.Areas.Admin.Factories;
+using GoCoCMS.Web.Areas.Admin.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoCoCMS.Web.Areas.Admin.Controllers
@@ -6,10 +8,28 @@ namespace GoCoCMS.Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class CategoryController : Controller
     {
+        #region Fields
+
+        private readonly ICategoryModelFactory _categoryModelFactory;
+
+        #endregion
+
+        #region Ctor
+
+        public CategoryController(ICategoryModelFactory categoryModelFactory)
+        {
+            _categoryModelFactory = categoryModelFactory;
+        }
+
+        #endregion
+
+        #region Methods
+
         // GET: Category
         public ActionResult Index()
         {
-            return View();
+            var model = _categoryModelFactory.PrepareCategoryListModel(new CategorySearchModel());
+            return View(model);
         }
 
         // GET: Category/Create
@@ -80,5 +100,13 @@ namespace GoCoCMS.Web.Areas.Admin.Controllers
                 return View();
             }
         }
+
+        #endregion
+
+        #region Utilities
+
+
+
+        #endregion
     }
 }

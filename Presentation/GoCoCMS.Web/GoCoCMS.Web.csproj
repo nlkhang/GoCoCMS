@@ -16,11 +16,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\GoCoCMS.Data\GoCoCMS.Data.csproj" />
+    <ProjectReference Include="..\..\Services\GoCoCMS.Service\GoCoCMS.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Category\" />
     <Folder Include="wwwroot\css\admin\" />
   </ItemGroup>

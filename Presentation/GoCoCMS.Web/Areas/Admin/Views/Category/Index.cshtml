@@ -1,7 +1,68 @@
-﻿
+﻿@using GoCoCMS.Web.Areas.Admin.Models
+@model CategoryListModel
 @{
   ViewData["Title"] = "Index";
   Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="content-header clearfix">
+  <h1 class="pull-left">
+    Manage Categories
+  </h1>
+  <div class="pull-right">
+    <a asp-action="Create" class="btn bg-blue">
+      <i class="fa fa-plus-square"></i>
+      Add new
+    </a>
+  </div>
+</div>
+
+<div class="content">
+  <div class="form-horizontal">
+    <div class="panel-group">
+      <div class="panel panel-default panel-search">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="col-md-4 text-right">
+                  <label asp-for="CategorySearchModel.SearchCategoryName"></label>
+                </div>
+                <div class="col-md-8">
+                  <input asp-for="CategorySearchModel.SearchCategoryName" class="form-control text-box single-line"/>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-8 col-md-offset-4">
+                  <button type="button" id="search-categories" class="btn btn-primary btn-search"><i class="fa fa-search"></i>Search</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <table class="table table-striped table-hover">
+            <tr>
+              <th>Category name</th>
+              <th>Description</th>
+              <th>Display order</th>
+              <th>Edit</th>
+            </tr>
+            @foreach (var category in Model.Categories)
+            {
+              <tr>
+                <td>@category.Breadcrumb</td>
+                <td>@category.Description</td>
+                <td>@category.DisplayOrder</td>
+                <td></td>
+              </tr>
+            }
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
