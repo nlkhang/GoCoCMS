@@ -3,3 +3,29 @@
     float: right;
 }
 /*End Label*/
+
+/*Begin Error Message*/
+.field-validation-error, 
+.validation-summary-errors {
+    color: red;
+}
+/*End Error Message*/
+
+/*Begin Common*/
+.form-horizontal span.required {
+    color: #ff2e2e;
+    font-size: 16px;
+    font-weight: bold;
+    float: right;
+    margin-right: 5px;
+}
+::-ms-clear {
+    display: none;
+}
+
+.form-control-clear {
+    z-index: 10;
+    pointer-events: auto;
+    cursor: pointer;
+}
+/*End Common*/

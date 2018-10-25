@@ -15,12 +15,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\GoCoCMS.Core\GoCoCMS.Core.csproj" />
     <ProjectReference Include="..\..\Libraries\GoCoCMS.Data\GoCoCMS.Data.csproj" />
     <ProjectReference Include="..\..\Services\GoCoCMS.Service\GoCoCMS.Service.csproj" />
+    <ProjectReference Include="..\GoCoCMS.Web.Infrastructure\GoCoCMS.Web.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
+    <Reference Include="AutoMapper">
+      <HintPath>C:\Users\JohnnyKhangNguyen\.nuget\packages\automapper\7.0.1\lib\netcoreapp2.0\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Internals">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\System.ServiceModel.Internals\v4.0_4.0.0.0__31bf3856ad364e35\System.ServiceModel.Internals.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

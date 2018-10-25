@@ -1,4 +1,6 @@
-﻿using GoCoCMS.Data;
+﻿using AutoMapper;
+using GoCoCMS.Core.Mapper;
+using GoCoCMS.Data;
 using GoCoCMS.Data.Repositories;
 using GoCoCMS.Service;
 using GoCoCMS.Web.Areas.Admin.Factories;
@@ -9,17 +11,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Linq;
 
 namespace GoCoCMS.Web
 {
     public class Startup
     {
+        #region Ctor
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        #endregion
+
+        #region Properties
+
         public IConfiguration Configuration { get; }
+
+        #endregion
+
+        #region Methods
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -33,14 +47,11 @@ namespace GoCoCMS.Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            // dependency injection
-            services.AddDbContext<GoCoCmsContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"))
-            );
-            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-            services.AddScoped<IDbContext, GoCoCmsContext>();
-            services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<ICategoryModelFactory, CategoryModelFactory>();
+            // register dependency injection
+            AddDependencyInjection(services);
+
+            // register auto mapper
+            AddAutoMapper(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,5 +83,49 @@ namespace GoCoCMS.Web
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+        #endregion
+
+        #region Utilities
+
+        public void AddDependencyInjection(IServiceCollection services)
+        {
+            // Db context
+            services.AddDbContext<GoCoCmsContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"))
+            );
+            services.AddScoped<IDbContext, GoCoCmsContext>();
+
+            // repository
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+
+            // service
+            services.AddScoped<ICategoryService, CategoryService>();
+
+            // model factory
+            services.AddScoped<ICategoryModelFactory, CategoryModelFactory>();
+            services.AddScoped<IBaseModelFactory, BaseModelFactory>();
+        }
+
+        public void AddAutoMapper(IServiceCollection services)
+        {
+            // get all instances of IMapperProfile
+            var mapperProfileType = typeof(IMapperProfile);
+            var types = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(t => t.GetTypes())
+                .Where(t => mapperProfileType.IsAssignableFrom(t) && t.IsClass && !t.IsAbstract);
+
+            // mapping config
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                foreach (var type in types)
+                    mc.AddProfile(type);
+            });
+            
+            // init auto mapper
+            AutoMapperConfiguration.Init(mappingConfig);
+        }
+
+        #endregion
     }
 }
