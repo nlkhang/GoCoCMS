@@ -118,7 +118,7 @@ namespace GoCoCMS.Service
             }
         }
 
-        public string GetFormattedBreadCrumb(Category category, IList<Category> allCategories = null, string separator = ">>")
+        public string GetFormattedBreadCrumb(Category category, IList<Category> allCategories = null, string separator = ">")
         {
             var result = string.Empty;
 

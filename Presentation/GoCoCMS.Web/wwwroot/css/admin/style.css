@@ -28,4 +28,7 @@
     pointer-events: auto;
     cursor: pointer;
 }
+.fa {
+    padding-right: 5px !important;
+}
 /*End Common*/
