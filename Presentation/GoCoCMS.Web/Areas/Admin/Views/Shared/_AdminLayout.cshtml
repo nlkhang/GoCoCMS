@@ -10,7 +10,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>GoCoCMS</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+  <!--Bootstrap-->
+  <link href="~/lib/adminLTE/vendor/bootstrap/css/bootstrap.css" rel="stylesheet" />
   <!-- Font Awesome -->
   <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
   <!-- Ionicons -->
@@ -211,7 +212,7 @@ desired effect
                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    <a asp-area="" asp-controller="Account" asp-action="Lockout" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -341,9 +342,9 @@ desired effect
   <!-- ./wrapper -->
   <!-- REQUIRED JS SCRIPTS -->
   <!-- jQuery 3 -->
-  <script src="~/lib/jquery/dist/jquery.js"></script>
+  <script src="~/lib/adminLTE/vendor/jquery/jquery.js"></script>
   <!-- Bootstrap 3.3.7 -->
-  <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="~/lib/adminLTE/vendor/bootstrap/js/bootstrap.js"></script>
   <!--Moment JS-->
   <script src="~/lib/moment/moment-with-locales.min.js"></script>
   <!--DateTime Picker-->

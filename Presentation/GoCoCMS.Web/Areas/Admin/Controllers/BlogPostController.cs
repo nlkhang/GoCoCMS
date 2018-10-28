@@ -4,11 +4,13 @@ using GoCoCMS.Web.Areas.Admin.Factories;
 using GoCoCMS.Web.Areas.Admin.Models.Post;
 using GoCoCMS.Web.Infrastructure.Mapper.Extensions;
 using GoCoCMS.Web.Infrastructure.Mvc.ActionFillter;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoCoCMS.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class BlogPostController : Controller
     {
         #region Fields

@@ -1,0 +1,29 @@
+﻿@using GoCoCMS.Data.Domain.Identity
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+  <form asp-area="" asp-controller="Account" asp-action="Lockout" method="post" id="logoutForm" class="navbar-right">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" asp-controller="Account" asp-action="Lockout">Logout</a>
+      </li>
+    </ul>
+  </form>
+}
+else
+{
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Log in</a>
+    </li>
+  </ul>
+}

@@ -36,6 +36,8 @@ namespace GoCoCMS.Web.Infrastructure.Extensions
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<GoCoCmsContext>()
                 .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options => options.LoginPath = "/Account/Login");
         }
 
         public static void AddDependencyInjection(this IServiceCollection services)
