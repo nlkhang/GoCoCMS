@@ -2,8 +2,10 @@
 using GoCoCMS.Core.DependencyRegistrator;
 using GoCoCMS.Core.Mapper;
 using GoCoCMS.Data;
+using GoCoCMS.Data.Domain.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +31,11 @@ namespace GoCoCMS.Web.Infrastructure.Extensions
             // dependency for db context
             services.AddDbContext<GoCoCmsContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("SqlConnection")));
+
+            // Identity
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<GoCoCmsContext>()
+                .AddDefaultTokenProviders();
         }
 
         public static void AddDependencyInjection(this IServiceCollection services)

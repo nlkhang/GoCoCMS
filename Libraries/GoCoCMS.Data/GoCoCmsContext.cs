@@ -1,21 +1,25 @@
 ﻿using GoCoCMS.Data.Domain;
+using GoCoCMS.Data.Domain.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace GoCoCMS.Data
 {
-    public class GoCoCmsContext : DbContext, IDbContext
+    public class GoCoCmsContext : IdentityDbContext<User, 
+        Role, 
+        long, 
+        IdentityUserClaim<long>, 
+        UserRole, 
+        IdentityUserLogin<long>, 
+        IdentityRoleClaim<long>, 
+        IdentityUserToken<long>>, 
+        IDbContext
     {
-        #region Properties
-
-        public DbSet<BlogCategory> BlogCategories { get; set; }
-        public DbSet<BlogPost> BlogPosts { get; set; }
-
-        #endregion 
-
         #region Ctor
 
-        public GoCoCmsContext(DbContextOptions options) : base(options)
+        public GoCoCmsContext(DbContextOptions<GoCoCmsContext> options) : base(options)
         {
         }
 
@@ -31,6 +35,21 @@ namespace GoCoCMS.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // BlogCategory
+            modelBuilder.Entity<BlogCategory>().ToTable("BlogCategories");
+
+            // BlogPost
+            modelBuilder.Entity<BlogPost>().ToTable("BlogPosts");
+
+            // Identity
+            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Role>().ToTable("Roles");
+            modelBuilder.Entity<UserRole>().ToTable("UserRoles");
+            modelBuilder.Entity<IdentityUserClaim<long>>().ToTable("UserClaims");
+            modelBuilder.Entity<IdentityUserLogin<long>>().ToTable("UserLogins");
+            modelBuilder.Entity<IdentityRoleClaim<long>>().ToTable("RoleClaims");
+            modelBuilder.Entity<IdentityUserToken<long>>().ToTable("UserTokens");
         }
 
         #endregion
