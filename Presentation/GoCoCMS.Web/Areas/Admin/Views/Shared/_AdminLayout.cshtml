@@ -15,6 +15,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
   <!-- Ionicons -->
   <link href="~/lib/Ionicons/css/ionicons.css" rel="stylesheet" />
+  <!--DateTime Picker-->
+  <link href="~/lib/datetime-picker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
   <!-- Theme style -->
   <link href="~/lib/adminLTE/css/AdminLTE.css" rel="stylesheet" />
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -242,7 +244,7 @@ desired effect
         <ul class="sidebar-menu" data-widget="tree">
           <!-- Optionally, you can add icons to the links -->
           <li class="active"><a asp-action="Index" asp-controller="Category"><i class="fa fa-book"></i> <span>Categories</span></a></li>
-          <li><a href="#"><i class="fa fa-link"></i> <span>Posts</span></a></li>
+          <li><a asp-action="Index" asp-controller="BlogPost"><i class="fa fa-link"></i> <span>Posts</span></a></li>
           <li><a href="#"><i class="fa fa-comments"></i> <span>Comments</span></a></li>
           <li><a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
         </ul>
@@ -342,6 +344,10 @@ desired effect
   <script src="~/lib/jquery/dist/jquery.js"></script>
   <!-- Bootstrap 3.3.7 -->
   <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+  <!--Moment JS-->
+  <script src="~/lib/moment/moment-with-locales.min.js"></script>
+  <!--DateTime Picker-->
+  <script src="~/lib/datetime-picker/js/bootstrap-datetimepicker.min.js"></script>
   <!-- AdminLTE App -->
   <script src="~/lib/adminLTE/js/adminlte.js"></script>
   <script src="~/js/site.js"></script>

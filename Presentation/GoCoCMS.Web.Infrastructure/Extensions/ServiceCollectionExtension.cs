@@ -26,6 +26,7 @@ namespace GoCoCMS.Web.Infrastructure.Extensions
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            // dependency for db context
             services.AddDbContext<GoCoCmsContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("SqlConnection")));
         }

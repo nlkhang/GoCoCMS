@@ -4,14 +4,16 @@ using GoCoCMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GoCoCMS.Data.Migrations
 {
     [DbContext(typeof(GoCoCmsContext))]
-    partial class GoCoCmsContextModelSnapshot : ModelSnapshot
+    [Migration("20181027090640_update-table-name")]
+    partial class updatetablename
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,8 @@ namespace GoCoCMS.Data.Migrations
 
                     b.Property<bool>("Deleted");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<int>("DisplayOrder");
 
@@ -47,8 +50,6 @@ namespace GoCoCMS.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BlogCategoryId");
-
                     b.Property<string>("Content")
                         .IsRequired();
 
@@ -57,29 +58,16 @@ namespace GoCoCMS.Data.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<bool>("Deleted");
-
                     b.Property<DateTime?>("EndDate");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
+                        .IsRequired();
 
                     b.Property<DateTime?>("StartDate");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BlogCategoryId");
-
                     b.ToTable("BlogPosts");
-                });
-
-            modelBuilder.Entity("GoCoCMS.Data.Domain.BlogPost", b =>
-                {
-                    b.HasOne("GoCoCMS.Data.Domain.BlogCategory", "BlogCategory")
-                        .WithMany("BlogPosts")
-                        .HasForeignKey("BlogCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

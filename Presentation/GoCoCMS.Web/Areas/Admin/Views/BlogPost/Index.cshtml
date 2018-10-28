@@ -1,12 +1,12 @@
-﻿@using GoCoCMS.Web.Areas.Admin.Models.Category
-@model CategoryListModel
+﻿@using GoCoCMS.Web.Areas.Admin.Models.Post
+@model BlogPostListModel
 @{
   ViewData["Title"] = "Index";
   Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 <div class="content-header clearfix">
   <h1 class="pull-left">
-    Manage Categories
+    Manage Blog Post
   </h1>
   <div class="pull-right">
     <a asp-action="Create" class="btn bg-blue">
@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<form asp-action="Index" asp-controller="Category" method="post">
+<form asp-action="Index" asp-controller="BlogPost" method="post">
   <div class="content">
     <div class="form-horizontal">
       <div class="panel-group">
@@ -26,10 +26,10 @@
               <div class="col-md-6">
                 <div class="form-group has-feedback has-clear">
                   <div class="col-md-4 text-right">
-                    <label asp-for="CategorySearchModel.SearchCategoryName"></label>
+                    <label asp-for="BlogPostSearchModel.SearchBlogPostName"></label>
                   </div>
                   <div class="col-md-8">
-                    <input asp-for="CategorySearchModel.SearchCategoryName" type="text" class="form-control" />
+                    <input asp-for="BlogPostSearchModel.SearchBlogPostName" type="text" class="form-control" />
                     <span class="form-control-clear fa fa-remove form-control-feedback hidden"></span>
                   </div>
                 </div>
@@ -47,20 +47,29 @@
           <div class="panel-body">
             <table class="table table-bordered table-striped table-hover">
               <tr>
-                <th>Category name</th>
-                <th>Description</th>
-                <th>Display order</th>
+                <th>Name</th>
+                <th>Content Overview</th>
+                <th>Category</th>
+                <th>Created Date</th>
+                <th>Start Date</th>
+                <th>End Date</th>
                 <th class="text-center">Action</th>
               </tr>
-              @foreach (var category in Model.Categories)
+              @foreach (var blogPost in Model.BlogPosts)
               {
                 <tr>
-                  <td>@category.Breadcrumb</td>
-                  <td>@category.Description</td>
-                  <td>@category.DisplayOrder</td>
+                  <td>@blogPost.Name</td>
+                  <td>@blogPost.ContentOverview</td>
+                  <td>@blogPost.Category</td>
+                  <td>@blogPost.CreatedDate</td>
+                  <td>@blogPost.StartDate</td>
+                  <td>@blogPost.EndDate</td>
                   <td class="text-center">
-                    <a class="btn btn-default" asp-action="Edit" asp-route-id="@category.Id"><i class="fa fa-edit"></i>Edit</a>
-                    <a class="btn btn-default" asp-action="Delete" asp-route-id="@category.Id" onclick="return confirm('Are you sure you want to delete this item?')"><i class="fa fa-remove"></i>Delete</a>
+                    <a class="btn btn-default" asp-action="Edit" asp-route-id="@blogPost.Id"><i class="fa fa-edit"></i>Edit</a>
+                    <a class="btn btn-default" asp-action="Delete" asp-route-id="@blogPost.Id"
+                       onclick="return confirm('Are you sure you want to delete this item?')">
+                      <i class="fa fa-remove"></i>Delete
+                    </a>
                   </td>
                 </tr>
               }

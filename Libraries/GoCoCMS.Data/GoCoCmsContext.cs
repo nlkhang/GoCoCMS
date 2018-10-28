@@ -8,10 +8,10 @@ namespace GoCoCMS.Data
     {
         #region Properties
 
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<BlogCategory> BlogCategories { get; set; }
+        public DbSet<BlogPost> BlogPosts { get; set; }
 
         #endregion 
-
 
         #region Ctor
 
@@ -25,7 +25,7 @@ namespace GoCoCMS.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseLazyLoadingProxies();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,33 +35,33 @@ namespace GoCoCMS.Data
 
         #endregion
 
-        public new DbSet<TEntity> Set<TEntity>() where TEntity : BaseEntity
+        public new virtual DbSet<TEntity> Set<TEntity>() where TEntity : BaseEntity
         {
             return base.Set<TEntity>();
         }
 
-        public string GenerateCreateScript()
+        public virtual string GenerateCreateScript()
         {
             throw new System.NotImplementedException();
         }
 
-        public IQueryable<TQuery> QueryFromSql<TQuery>(string sql) where TQuery : class
+        public virtual IQueryable<TQuery> QueryFromSql<TQuery>(string sql) where TQuery : class
         {
             throw new System.NotImplementedException();
         }
 
-        public IQueryable<TEntity> EntityFromSql<TEntity>(string sql, params object[] parameters) where TEntity : BaseEntity
+        public virtual IQueryable<TEntity> EntityFromSql<TEntity>(string sql, params object[] parameters) where TEntity : BaseEntity
         {
             throw new System.NotImplementedException();
         }
 
-        public int ExecuteSqlCommand(RawSqlString sql, bool doNotEnsureTransaction = false, int? timeout = null,
+        public virtual int ExecuteSqlCommand(RawSqlString sql, bool doNotEnsureTransaction = false, int? timeout = null,
             params object[] parameters)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Detach<TEntity>(TEntity entity) where TEntity : BaseEntity
+        public virtual void Detach<TEntity>(TEntity entity) where TEntity : BaseEntity
         {
             throw new System.NotImplementedException();
         }

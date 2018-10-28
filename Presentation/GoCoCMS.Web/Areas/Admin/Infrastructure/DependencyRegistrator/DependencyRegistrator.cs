@@ -8,8 +8,9 @@ namespace GoCoCMS.Web.Areas.Admin.Infrastructure.DependencyRegistrator
     {
         public void Register(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<ICategoryModelFactory, CategoryModelFactory>();
             serviceCollection.AddScoped<IBaseModelFactory, BaseModelFactory>();
+            serviceCollection.AddScoped<IBlogCategoryModelFactory, BlogCategoryModelFactory>();
+            serviceCollection.AddScoped<IBlogPostModelFactory, BlogPostModelFactory>();
         }
     }
 }

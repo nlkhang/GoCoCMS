@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GoCoCMS.Web.Areas.Admin.Models
+namespace GoCoCMS.Web.Areas.Admin.Models.Category
 {
     public class CategoryListModel
     {

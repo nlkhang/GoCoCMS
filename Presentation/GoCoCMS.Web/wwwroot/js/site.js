@@ -9,3 +9,12 @@ $('.form-control-clear').click(function () {
     $(this).siblings('input[type="text"]').val('')
         .trigger('propertychange').focus();
 });
+
+$('.date').datetimepicker({
+    icons: {
+        time: "fa fa-clock-o",
+        date: "fa fa-calendar",
+        up: "fa fa-arrow-up",
+        down: "fa fa-arrow-down"
+    }
+});

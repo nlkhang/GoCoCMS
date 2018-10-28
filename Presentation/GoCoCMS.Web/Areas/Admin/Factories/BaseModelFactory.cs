@@ -10,13 +10,13 @@ namespace GoCoCMS.Web.Areas.Admin.Factories
     {
         #region Fields
 
-        private readonly ICategoryService _categoryService;
+        private readonly IBlogCategoryService _categoryService;
 
         #endregion
 
         #region Ctor
 
-        public BaseModelFactory(ICategoryService categoryService)
+        public BaseModelFactory(IBlogCategoryService categoryService)
         {
             _categoryService = categoryService;
         }

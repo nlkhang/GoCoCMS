@@ -1,24 +1,24 @@
 ﻿using GoCoCMS.Data.Domain;
 using GoCoCMS.Service;
-using GoCoCMS.Web.Areas.Admin.Models;
+using GoCoCMS.Web.Areas.Admin.Models.Category;
 using GoCoCMS.Web.Infrastructure.Mapper.Extensions;
 using System;
 using System.Linq;
 
 namespace GoCoCMS.Web.Areas.Admin.Factories
 {
-    public class CategoryModelFactory : ICategoryModelFactory
+    public class BlogCategoryModelFactory : IBlogCategoryModelFactory
     {
         #region Fields
 
-        private readonly ICategoryService _categoryService;
+        private readonly IBlogCategoryService _categoryService;
         private readonly IBaseModelFactory _baseModelFactory;
 
         #endregion
 
         #region Ctor
 
-        public CategoryModelFactory(ICategoryService categoryService,
+        public BlogCategoryModelFactory(IBlogCategoryService categoryService,
             IBaseModelFactory baseModelFactory)
         {
             _categoryService = categoryService;
@@ -53,7 +53,7 @@ namespace GoCoCMS.Web.Areas.Admin.Factories
             return model;
         }
 
-        public CategoryModel PrepareCategoryModel(CategoryModel categoryModel, Category category)
+        public CategoryModel PrepareCategoryModel(CategoryModel categoryModel, BlogCategory category)
         {
             if (category != null)
             {

@@ -4,4 +4,11 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Encryption\" />
+    <Folder Include="Email\" />
+    <Folder Include="NewFolder\" />
+    <Folder Include="SMS\" />
+  </ItemGroup>
+
 </Project>

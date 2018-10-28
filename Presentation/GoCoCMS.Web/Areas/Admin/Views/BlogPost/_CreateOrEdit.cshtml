@@ -1,0 +1,72 @@
+﻿@using GoCoCMS.Web.Areas.Admin.Models.Post
+@model BlogPostModel
+
+<div asp-validation-summary="ModelOnly"></div>
+<input asp-for="Id" type="hidden" />
+
+<div class="content">
+  <div class="form-horizontal">
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="form-group">
+            <div class="col-md-3">
+              <label>Name</label>
+              <span class="required">*</span>
+            </div>
+            <div class="col-md-9">
+              <input asp-for="Name" class="form-control" type="text" />
+              <span asp-validation-for="Name"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-3">
+              <label>Content</label>
+              <span class="required">*</span>
+            </div>
+            <div class="col-md-9">
+              <textarea asp-for="Content" rows="5" class="form-control"></textarea>
+              <span asp-validation-for="Content"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-3">
+              <label>Content Overview</label>
+              <span class="required">*</span>
+            </div>
+            <div class="col-md-9">
+              <textarea asp-for="ContentOverview" rows="5" class="form-control"></textarea>
+              <span asp-validation-for="ContentOverview"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-3">
+              <label>Category</label>
+            </div>
+            <div class="col-md-9">
+              <select class="form-control" asp-for="BlogCategoryId" asp-items="@Model.AvailableCategories"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-3">
+              <label>Start Date</label>
+            </div>
+            <div class="col-md-9">
+              <goco-datetime-picker asp-for="StartDate" />
+              <span asp-validation-for="StartDate"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-3">
+              <label>End Date</label>
+            </div>
+            <div class="col-md-9">
+              <goco-datetime-picker asp-for="EndDate" />
+              <span asp-validation-for="EndDate"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

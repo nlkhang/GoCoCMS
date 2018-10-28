@@ -6,17 +6,17 @@ using System.Linq;
 
 namespace GoCoCMS.Service
 {
-    public class CategoryService : ICategoryService
+    public class BlogCategoryService : IBlogCategoryService
     {
         #region Fields
 
-        private readonly IRepository<Category> _categoryRepository;
+        private readonly IRepository<BlogCategory> _categoryRepository;
 
         #endregion
 
         #region Ctor
 
-        public CategoryService(IRepository<Category> categoryRepository)
+        public BlogCategoryService(IRepository<BlogCategory> categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }
@@ -25,7 +25,7 @@ namespace GoCoCMS.Service
 
         #region Methods
 
-        public IList<Category> GetAllCategories(string categoryName)
+        public IList<BlogCategory> GetAllCategories(string categoryName)
         {
             var query = _categoryRepository.Table;
 
@@ -43,7 +43,7 @@ namespace GoCoCMS.Service
 
         }
 
-        public Category GetCategoryById(int categoryId)
+        public BlogCategory GetCategoryById(int categoryId)
         {
             if (categoryId == 0)
                 return null;
@@ -51,28 +51,25 @@ namespace GoCoCMS.Service
             return _categoryRepository.GetById(categoryId);
         }
 
-        public IList<Category> GetCategoriesByIds(int[] categoryIds)
+        public IList<BlogCategory> GetCategoriesByIds(int[] categoryIds)
         {
             if (categoryIds == null || categoryIds.Length == 0)
-                return new List<Category>();
+                return new List<BlogCategory>();
 
             var query = _categoryRepository.Table.Where(c => categoryIds.Contains(c.Id) && !c.Deleted);
 
             return query.ToList();
         }
 
-        public virtual IList<Category> GetAllCategoriesByParentCategoryId(int parentCategoryId)
+        public virtual IList<BlogCategory> GetAllCategoriesByParentCategoryId(int parentCategoryId)
         {
-            var query = _categoryRepository.Table;
-            query = query.Where(c => c.ParentCategoryId == parentCategoryId);
-            query = query.Where(c => !c.Deleted);
+            var query = _categoryRepository.Table.Where(c => c.ParentCategoryId == parentCategoryId && !c.Deleted);
             query = query.OrderBy(c => c.DisplayOrder).ThenBy(c => c.Id);
 
-            var categories = query.ToList();
-            return categories;
+            return query.ToList();
         }
 
-        public void InsertCategory(Category category)
+        public void InsertCategory(BlogCategory category)
         {
             if (category == null)
                 throw new ArgumentNullException(nameof(category));
@@ -80,7 +77,7 @@ namespace GoCoCMS.Service
             _categoryRepository.Insert(category);
         }
 
-        public void UpdateCategory(Category category)
+        public void UpdateCategory(BlogCategory category)
         {
             if (category == null)
                 throw new ArgumentNullException(nameof(category));
@@ -101,7 +98,7 @@ namespace GoCoCMS.Service
             _categoryRepository.Update(category);
         }
 
-        public void DeleteCategory(Category category)
+        public void DeleteCategory(BlogCategory category)
         {
             if (category == null)
                 throw new ArgumentNullException(nameof(category));
@@ -118,7 +115,7 @@ namespace GoCoCMS.Service
             }
         }
 
-        public string GetFormattedBreadCrumb(Category category, IList<Category> allCategories = null, string separator = ">")
+        public string GetFormattedBreadCrumb(BlogCategory category, IList<BlogCategory> allCategories = null, string separator = ">")
         {
             var result = string.Empty;
 
@@ -133,12 +130,12 @@ namespace GoCoCMS.Service
             return result;
         }
 
-        public IList<Category> GetCategoryBreadCrumb(Category category, IList<Category> allCategories = null)
+        public IList<BlogCategory> GetCategoryBreadCrumb(BlogCategory category, IList<BlogCategory> allCategories = null)
         {
             if (category == null)
                 throw new ArgumentNullException(nameof(category));
 
-            var result = new List<Category>();
+            var result = new List<BlogCategory>();
 
             //used to prevent circular references
             var alreadyProcessedCategoryIds = new List<int>();
@@ -157,13 +154,13 @@ namespace GoCoCMS.Service
             return result;
         }
 
-        public virtual IList<Category> SortCategoriesForTree(IList<Category> source, int parentId = 0,
+        public virtual IList<BlogCategory> SortCategoriesForTree(IList<BlogCategory> source, int parentId = 0,
             bool ignoreCategoriesWithoutExistingParent = false)
         {
             if (source == null)
                 throw new ArgumentNullException(nameof(source));
 
-            var result = new List<Category>();
+            var result = new List<BlogCategory>();
 
             foreach (var cat in source.Where(c => c.ParentCategoryId == parentId).ToList())
             {

@@ -1,18 +1,18 @@
-﻿@using GoCoCMS.Web.Areas.Admin.Models.Category
-@model CategoryModel
+﻿@using GoCoCMS.Web.Areas.Admin.Models.Post
+@model BlogPostModel
 
 @{
   ViewBag.Title = "title";
   Layout = "_AdminLayout";
 }
 
-<form asp-controller="Category" asp-action="Create" method="post">
+<form asp-controller="BlogPost" asp-action="Create" method="post">
   <div class="content-header clearfix">
     <h1 class="pull-left">
-      Add a new category
+      Add a new Blog Post
       <small>
         <i class="fa fa-arrow-circle-left"></i>
-        <a asp-action="Index">bask to category list</a>
+        <a asp-action="Index">bask to blog post list</a>
       </small>
     </h1>
     <div class="pull-right">

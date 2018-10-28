@@ -16,7 +16,8 @@ namespace GoCoCMS.Web.Infrastructure.DependencyRegistrator
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
             // service
-            serviceCollection.AddScoped<ICategoryService, CategoryService>();
+            serviceCollection.AddScoped<IBlogCategoryService, BlogCategoryService>();
+            serviceCollection.AddScoped<IBlogPostService, BlogPostService>();
         }
     }
 }

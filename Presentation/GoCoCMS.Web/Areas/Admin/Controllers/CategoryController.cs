@@ -1,7 +1,7 @@
 ﻿using GoCoCMS.Data.Domain;
 using GoCoCMS.Service;
 using GoCoCMS.Web.Areas.Admin.Factories;
-using GoCoCMS.Web.Areas.Admin.Models;
+using GoCoCMS.Web.Areas.Admin.Models.Category;
 using GoCoCMS.Web.Infrastructure.Mapper.Extensions;
 using GoCoCMS.Web.Infrastructure.Mvc.ActionFillter;
 using Microsoft.AspNetCore.Mvc;
@@ -13,15 +13,15 @@ namespace GoCoCMS.Web.Areas.Admin.Controllers
     {
         #region Fields
 
-        private readonly ICategoryModelFactory _categoryModelFactory;
-        private readonly ICategoryService _categoryService;
+        private readonly IBlogCategoryModelFactory _categoryModelFactory;
+        private readonly IBlogCategoryService _categoryService;
 
         #endregion
 
         #region Ctor
 
-        public CategoryController(ICategoryModelFactory categoryModelFactory,
-            ICategoryService categoryService)
+        public CategoryController(IBlogCategoryModelFactory categoryModelFactory,
+            IBlogCategoryService categoryService)
         {
             _categoryModelFactory = categoryModelFactory;
             _categoryService = categoryService;
@@ -64,7 +64,7 @@ namespace GoCoCMS.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var category = model.ToEntity<Category>();
+                var category = model.ToEntity<BlogCategory>();
                 _categoryService.InsertCategory(category);
 
                 if(!continueEditing)
@@ -100,7 +100,7 @@ namespace GoCoCMS.Web.Areas.Admin.Controllers
         {
             // try get category by parameter
             var category = _categoryService.GetCategoryById(model.Id);
-            if (category?.Deleted != true)
+            if (category?.Deleted == true)
                 return RedirectToAction("Index");
 
             if (ModelState.IsValid)

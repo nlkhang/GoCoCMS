@@ -4,14 +4,16 @@ using GoCoCMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GoCoCMS.Data.Migrations
 {
     [DbContext(typeof(GoCoCmsContext))]
-    partial class GoCoCmsContextModelSnapshot : ModelSnapshot
+    [Migration("20181027164919_add-foreign-key")]
+    partial class addforeignkey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,8 @@ namespace GoCoCMS.Data.Migrations
 
                     b.Property<bool>("Deleted");
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<int>("DisplayOrder");
 
@@ -62,8 +65,7 @@ namespace GoCoCMS.Data.Migrations
                     b.Property<DateTime?>("EndDate");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
+                        .IsRequired();
 
                     b.Property<DateTime?>("StartDate");
 

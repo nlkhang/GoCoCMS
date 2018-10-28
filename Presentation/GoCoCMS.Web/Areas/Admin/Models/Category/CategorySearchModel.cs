@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GoCoCMS.Web.Areas.Admin.Models
+namespace GoCoCMS.Web.Areas.Admin.Models.Category
 {
     public class CategorySearchModel
     {
