@@ -1,13 +1,15 @@
 # GoCoCMS
 
 This is a simple blog engine built on the ASP.NET Core with very simple features. In the future will endeavor as a Content Management System and is an open source. 
+- GoCo: Abbreviated by a place in a southwestern province (Gò Công)
+- CMS: Content Management System
 
 # Repository
 
 - Clone the repository using the command "git clone https://gitlab.com/nlkhang.it/gococms.git" and checkout the develop branch.
-- Available on Github: https://github.com/nlkhang/GoCoCMS 
+- It's also available on Github: https://github.com/nlkhang/GoCoCMS 
 
-# Feature
+# Features
 
 ## For blog owner (Admin):
 
