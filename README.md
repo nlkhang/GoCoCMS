@@ -1,8 +1,6 @@
 # GoCoCMS
 
 This is a simple blog engine built on the ASP.NET Core with very simple features. In the future will endeavor as a Content Management System and is an open source. 
-- GoCo: Abbreviated by a place in a southwestern province (Gò Công)
-- CMS: Content Management System
 
 # Repository
 
