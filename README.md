@@ -28,10 +28,23 @@ Clone the repository using the command "git clone https://gitlab.com/nlkhang.it/
 - ASP.NET Core 2.1
 - Entity Framework Core
 - ASP.NET Core Identity
-- Auto Mapper
+- AutoMapper
+- Unit Testing
 
 # Visual Studio 2017
+
 - Download:  https://www.visualstudio.com/downloads/
 - Open GoCoCMS.sln and wait for VS restore all Nuget Packages
 - Set startup project: GoCoCMS.Web
 - Run it
+
+# Features in the coming time
+
+- Single sign-on
+- Themes
+- Slideshow image on home page
+- Support multiple language
+- Search Engine Optimization (SEO)
+- Manage users
+- Manage widget
+- Count visits
