@@ -1,3 +1,37 @@
 # GoCoCMS
 
-This is a simple Blog Engine using ASP.NET Core 2.1
+This is a simple blog engine built on the ASP.NET Core. In the future will endeavor as a Content Management System and is an open source. 
+
+# Repository
+
+Clone the repository using the command "git clone https://gitlab.com/nlkhang.it/gococms.git" and checkout the develop branch.
+
+# Feature
+
+## For blog owner (Admin):
+
+- User Login/Logout
+- Manage categories
+- Manage post
+- Manage comments
+- Manage setting 
+
+## For internet users:
+
+- Home page: lasted posts, categories menu
+- View posts by category
+- View post details
+- Add comments
+
+# Technologies used
+
+- ASP.NET Core 2.1
+- Entity Framework Core
+- ASP.NET Core Identity
+- Auto Mapper
+
+# Visual Studio 2017
+- Download:  https://www.visualstudio.com/downloads/
+- Open GoCoCMS.sln and wait for VS restore all Nuget Packages
+- Set startup project: GoCoCMS.Web
+- Run it
