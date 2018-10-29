@@ -4,7 +4,8 @@ This is a simple blog engine built on the ASP.NET Core with very simple features
 
 # Repository
 
-Clone the repository using the command "git clone https://gitlab.com/nlkhang.it/gococms.git" and checkout the develop branch.
+- Clone the repository using the command "git clone https://gitlab.com/nlkhang.it/gococms.git" and checkout the develop branch.
+- Available on Github: https://github.com/nlkhang/GoCoCMS 
 
 # Feature
 
