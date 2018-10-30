@@ -2,6 +2,7 @@
 using GoCoCMS.Data.Domain;
 using GoCoCMS.Web.Infrastructure.Model;
 using System;
+using System.Collections.Generic;
 
 namespace GoCoCMS.Web.Infrastructure.Mapper.Extensions
 {
@@ -31,17 +32,22 @@ namespace GoCoCMS.Web.Infrastructure.Mapper.Extensions
             return entity.Map<TModel>();
         }
 
-        public static TModel ToModel<TModel, TEntity>(this TEntity entity, TModel model)
-            where TEntity : BaseEntity where TModel : BaseEntityModel
+        public static TModel ToModel<TModel, TEntity>(this IEnumerable<TEntity> entity) where TEntity : BaseEntity
         {
-            if (model == null)
-                throw new ArgumentNullException(nameof(model));
-
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
-
-            return entity.MapTo(model);
+            return AutoMapperConfiguration.Mapper.Map<IEnumerable<TEntity>, TModel>(entity);
         }
+
+        //public static TModel ToModel<TModel, TEntity>(this TEntity entity, TModel model)
+        //    where TEntity : BaseEntity where TModel : BaseEntityModel
+        //{
+        //    if (model == null)
+        //        throw new ArgumentNullException(nameof(model));
+
+        //    if (entity == null)
+        //        throw new ArgumentNullException(nameof(entity));
+
+        //    return entity.MapTo(model);
+        //}
 
         #endregion
 

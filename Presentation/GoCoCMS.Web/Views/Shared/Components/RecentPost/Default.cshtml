@@ -1,0 +1,15 @@
+﻿@model IEnumerable<GoCoCMS.Web.Models.Post.PostModel>
+
+<div class="card my-4">
+  <h5 class="card-header">Recent posts</h5>
+  <div class="card-body">
+    <ul class="list-unstyled">
+      @foreach (var post in Model)
+      {
+        <li>
+          <a href="#">@post.Name</a>
+        </li>
+      }
+    </ul>
+  </div>
+</div>

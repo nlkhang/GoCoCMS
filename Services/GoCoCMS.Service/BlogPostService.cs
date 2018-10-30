@@ -64,6 +64,14 @@ namespace GoCoCMS.Service
             return query.ToList();
         }
 
+        public IList<BlogPost> GetRecentPosts(int numberOfPost)
+        {
+            var query = _blogPostRepository.Table.Where(p => !p.Deleted);
+            query = query.Take(numberOfPost).OrderByDescending(p => p.CreatedDate);
+
+            return query.ToList();
+        }
+
         public void InsertBlogPost(BlogPost blogPost)
         {
             if (blogPost == null)

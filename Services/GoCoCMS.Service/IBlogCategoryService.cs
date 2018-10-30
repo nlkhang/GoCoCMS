@@ -5,7 +5,7 @@ namespace GoCoCMS.Service
 {
     public interface IBlogCategoryService
     {
-        IList<BlogCategory> GetAllCategories(string categoryName);
+        IList<BlogCategory> GetAllCategories(string categoryName = "");
         BlogCategory GetCategoryById(int categoryId);
         IList<BlogCategory> GetCategoriesByIds(int[] categoryIds);
         IList<BlogCategory> GetAllCategoriesByParentCategoryId(int parentCategoryId);

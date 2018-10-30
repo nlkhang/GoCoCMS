@@ -1,0 +1,12 @@
+﻿@model GoCoCMS.Web.Models.Category.CategoryModel
+
+@foreach (var subCategory in Model.SubCategories)
+{
+  <ul>
+    <li><a href="#">@subCategory.Name</a></li>
+    @if (subCategory.SubCategories.Count > 0)
+    {
+      @await Html.PartialAsync("_CategoryChild", subCategory)
+    }
+  </ul>
+}

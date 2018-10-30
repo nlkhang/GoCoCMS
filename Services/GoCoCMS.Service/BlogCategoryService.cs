@@ -25,7 +25,7 @@ namespace GoCoCMS.Service
 
         #region Methods
 
-        public IList<BlogCategory> GetAllCategories(string categoryName)
+        public IList<BlogCategory> GetAllCategories(string categoryName = "")
         {
             var query = _categoryRepository.Table;
 

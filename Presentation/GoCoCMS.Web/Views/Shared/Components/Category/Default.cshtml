@@ -1,0 +1,19 @@
+﻿@model IEnumerable<GoCoCMS.Web.Models.Category.CategoryModel>
+
+<div class="card my-4">
+  <h5 class="card-header">Categories</h5>
+  <div class="card-body">
+    <ul class="list-unstyled">
+      @foreach (var category in Model)
+      {
+        <li>
+          <a href="#">@category.Name</a>
+          @if (category.SubCategories.Count > 0)
+          {
+              @await Html.PartialAsync("_CategoryChild", category)
+          }
+        </li>
+      }     
+    </ul>
+  </div>
+</div>
