@@ -11,8 +11,7 @@
         <div class="panel-body">
           <div class="form-group">
             <div class="col-md-3">
-              <label>Name</label>
-              <span class="required">*</span>
+              <goco-label asp-for="Name" asp-required="true" />
             </div>
             <div class="col-md-9">
               <input asp-for="Name" class="form-control" type="text" /> 
@@ -21,8 +20,7 @@
           </div>
           <div class="form-group">
             <div class="col-md-3">
-              <label>Description</label>
-              <span class="required">*</span>
+              <goco-label asp-for="Description" asp-required="true" />
             </div>
             <div class="col-md-9">
               <input asp-for="Description" class="form-control" type="text" />
@@ -31,7 +29,7 @@
           </div>
           <div class="form-group">
             <div class="col-md-3">
-              <label>Parent category</label>
+              <goco-label asp-for="ParentCategoryId" asp-required="false" />
             </div>
             <div class="col-md-9">
               <select class="form-control" asp-for="ParentCategoryId" asp-items="@Model.AvailableCategories"></select>
@@ -39,8 +37,7 @@
           </div>
           <div class="form-group">
             <div class="col-md-3">
-              <label>Display Order</label>
-              <span class="required">*</span>
+              <goco-label asp-for="DisplayOrder" asp-required="false" />
             </div>
             <div class="col-md-9">
               <input asp-for="DisplayOrder" class="form-control" type="number" />

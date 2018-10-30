@@ -26,12 +26,20 @@ namespace GoCoCMS.Web.Areas.Admin.Models.Post
         public string Content { get; set; }
 
         [Required]
+        [Display(Name = "Content Overview")]
         public string ContentOverview { get; set; }
 
         public string Category { get; set; }
+
         public DateTime CreatedDate { get; set; }
+
+        [Display(Name = "Start Date")]
         public DateTime? StartDate { get; set; }
+
+        [Display(Name = "End Date")]
         public DateTime? EndDate { get; set; }
+
+        [Display(Name = "Category")]
         public int BlogCategoryId { get; set; }
         public IList<SelectListItem> AvailableCategories { get; set; }
 
