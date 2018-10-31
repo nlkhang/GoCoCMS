@@ -28,7 +28,15 @@ namespace GoCoCMS.Web.Factories
         public IList<PostModel> PrepareRecentPostModel()
         {
             var posts =  _blogPostService.GetRecentPosts(10);
-            var postModel = posts.ToModel< IList<PostModel>, BlogPost>();
+            var postModel = posts.ToModel<IList<PostModel>, BlogPost>();
+
+            return postModel;
+        }
+
+        public IList<PostModel> PrepareHomePagePostModel()
+        {
+            var postsOnHomePage = _blogPostService.GetPostsOnHomePage();
+            var postModel = postsOnHomePage.ToModel<IList<PostModel>, BlogPost>();
 
             return postModel;
         }

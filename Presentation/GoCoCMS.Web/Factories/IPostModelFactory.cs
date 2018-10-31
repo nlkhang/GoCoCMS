@@ -6,5 +6,6 @@ namespace GoCoCMS.Web.Factories
     public interface IPostModelFactory
     {
         IList<PostModel> PrepareRecentPostModel();
+        IList<PostModel> PrepareHomePagePostModel();
     }
 }

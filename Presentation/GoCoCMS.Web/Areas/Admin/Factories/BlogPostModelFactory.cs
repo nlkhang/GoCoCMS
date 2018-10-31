@@ -45,7 +45,7 @@ namespace GoCoCMS.Web.Areas.Admin.Factories
                     Id = blogPost.Id,
                     Name = blogPost.Name,
                     Content = blogPost.Content,
-                    ContentOverview = blogPost.ContentOverview,
+                    ShortDescription = blogPost.ShortDescription,
                     Category = blogPost.BlogCategory?.Name,
                     CreatedDate = blogPost.CreatedDate,
                     StartDate = blogPost.StartDate,

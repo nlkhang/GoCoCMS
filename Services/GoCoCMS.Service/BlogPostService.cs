@@ -72,6 +72,12 @@ namespace GoCoCMS.Service
             return query.ToList();
         }
 
+        public IList<BlogPost> GetPostsOnHomePage()
+        {
+            var query = _blogPostRepository.Table.Where(p => !p.Deleted && p.ShowOnHomePage);
+            return query.ToList();
+        }
+
         public void InsertBlogPost(BlogPost blogPost)
         {
             if (blogPost == null)

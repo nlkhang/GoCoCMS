@@ -6,6 +6,7 @@ namespace GoCoCMS.Web.Models.Post
     {
         public string Name { get; set; }
         public string Content { get; set; }
-        public string ContentOverview { get; set; }
+        public string ShortDescription { get; set; }
+        public string ThumbnailImage { get; set; }
     }
 }

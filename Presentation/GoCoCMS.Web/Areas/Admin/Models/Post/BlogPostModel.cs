@@ -26,8 +26,8 @@ namespace GoCoCMS.Web.Areas.Admin.Models.Post
         public string Content { get; set; }
 
         [Required]
-        [Display(Name = "Content Overview")]
-        public string ContentOverview { get; set; }
+        [Display(Name = "Short Description")]
+        public string ShortDescription { get; set; }
 
         public string Category { get; set; }
 

@@ -10,6 +10,7 @@ namespace GoCoCMS.Service
         IList<BlogPost> GetBlogPostsByIds(int[] blogPostIds);
         IList<BlogPost> GetAllBlogPostsByBlogCategoryId(int blogCategoryId);
         IList<BlogPost> GetRecentPosts(int numberOfPost);
+        IList<BlogPost> GetPostsOnHomePage();
         void InsertBlogPost(BlogPost blogPost);
         void UpdateBlogPost(BlogPost blogPost);
         void DeleteBlogPost(BlogPost blogPost);
